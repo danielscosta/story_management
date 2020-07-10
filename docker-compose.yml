@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.8'
 
 services:
   db:
@@ -13,7 +13,8 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile-dev
+      args:
+        - RAILS_ENV=development
     ports:
       - "3000:3000"
     environment:
@@ -25,7 +26,9 @@ services:
   test:
     build:
       context: .
-      dockerfile: Dockerfile-test
+      args:
+        - RAILS_ENV=test
+    command: ["bundle", "exec", "rspec"]
     environment:
       - RAILS_ENV=test
       - MYSQL_HOST=db

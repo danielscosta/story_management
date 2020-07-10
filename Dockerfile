@@ -5,7 +5,8 @@ ARG BUILD_PACKAGES="build-base curl-dev git"
 ARG DEV_PACKAGES="mysql-dev yaml-dev zlib-dev"
 ARG RUBY_PACKAGES="tzdata"
 
-ENV RAILS_ENV=production
+ARG RAILS_ENV
+
 ENV BUNDLE_APP_CONFIG="$RAILS_ROOT/.bundle"
 
 WORKDIR $RAILS_ROOT
@@ -29,7 +30,6 @@ FROM ruby:2.7.1-alpine
 ARG RAILS_ROOT=/app
 ARG PACKAGES="tzdata bash mariadb-connector-c-dev yarn"
 
-ENV RAILS_ENV=production
 ENV BUNDLE_APP_CONFIG="$RAILS_ROOT/.bundle"
 
 WORKDIR $RAILS_ROOT
