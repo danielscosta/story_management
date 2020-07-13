@@ -1,0 +1,20 @@
+<%= form_for :story, url: stories_path do |f| %>
+    <div class="field">
+        <%= f.label :headline %><br />
+        <%= f.text_field :headline, autofocus: true, :minlength => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :writer %><br />
+        <%= f.select :writer_id, @users.collect { |user| [user.email, user.id] }, :include_blank => true %>
+    </div>   
+
+    <div class="field">
+        <%= f.label :reviewer %><br />
+        <%= f.select :reviewer_id, @users.collect { |user| [user.email, user.id] }, :include_blank => true %>
+    </div>   
+    
+    <div class="actions">
+        <%= f.submit "Save" %>
+    </div>
+<% end %>

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user && @user.authenticate(params[:session][:password])
       sign_in
-      redirect_to "https://rubyonrails.org/"
+      redirect_to "/stories"
     else
       render "new"
     end
@@ -14,6 +14,6 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to "https://rubyonrails.org/"
+    redirect_to "/"
   end
 end

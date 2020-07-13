@@ -15,6 +15,10 @@ services:
       context: .
       args:
         - RAILS_ENV=development
+    volumes:
+      - "build:/app/.build"
+      - "vendor:/app/vendor"
+      - "node_modules:/app/node_modules"
     ports:
       - "3000:3000"
     environment:
@@ -28,9 +32,19 @@ services:
       context: .
       args:
         - RAILS_ENV=test
+    volumes:
+      - "build:/app/.build"
+      - "vendor:/app/vendor"
+      - "node_modules:/app/node_modules"
+      - ./spec/:/app/spec
     command: ["bundle", "exec", "rspec"]
     environment:
       - RAILS_ENV=test
       - MYSQL_HOST=db
     depends_on:
       - db
+
+volumes: 
+  build: 
+  vendor:
+  node_modules:

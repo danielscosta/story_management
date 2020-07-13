@@ -9,7 +9,7 @@ module SessionsHelper
 
   def block_access
     if current_user.present?
-      redirect_to "https://rubyonrails.org/"
+      redirect_to "/stories"
     end
   end
 
